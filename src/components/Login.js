@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './InnerSection';
 import firebase from 'firebase';
+import { authInputChange } from '../actions';
+import { connect } from 'react-redux';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   componentDidMount(){
     const config = {
       apiKey: "AIzaSyDtBC8PhXkiWlrhZKGlXENmREhEjVmdX4I",
@@ -21,10 +23,17 @@ export default class Login extends React.Component {
     return (
       <View>
         <InnerSection>
-          <FormInput value="" placeholder="Email" />
+          <FormInput
+          value=""
+          placeholder="Email"
+          onChangeText={text => this.props.authInputChange({'field': 'email', 'value': text}) } />
         </InnerSection>
         <InnerSection>
-          <FormInput value="" placeholder="Password" secureTextEntry={true} />
+          <FormInput
+          value=""
+          placeholder="Password"
+          onChangeText={text => this.props.authInputChange({'field': 'password', 'value': text}) }
+          secureTextEntry={true} />
         </InnerSection>
         <InnerSection>
           <Button title="Login" />
@@ -33,3 +42,5 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default connect(null, { authInputChange })(Login);

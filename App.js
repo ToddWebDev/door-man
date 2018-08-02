@@ -2,14 +2,20 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/components/Login';
 import Header from './src/components/Header';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './src/reducers';
 
 export default class App extends React.Component {
   render() {
+    const store = createStore(reducers);
     return (
-      <View>
-        <Header title="Login" />
-        <Login />
-      </View>
+      <Provider store={store}>
+        <View>
+          <Header title="Login" />
+          <Login />
+        </View>
+      </Provider>
     );
   }
 }
