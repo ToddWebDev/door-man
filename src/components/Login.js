@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './InnerSection';
 import firebase from 'firebase';
-import { authInputChange } from '../actions';
+import { authInputChange, login } from '../actions';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -18,29 +18,42 @@ class Login extends React.Component {
     };
     firebase.initializeApp(config);
   }
+
+  login() {
+    console.log('Entering login function');
+    const { email, password } = this.props;
+    this.props.login({email, password});
+  }
   
   render() {
     return (
       <View>
         <InnerSection>
           <FormInput
-          value=""
+          value={this.props.email}
           placeholder="Email"
           onChangeText={text => this.props.authInputChange({'field': 'email', 'value': text}) } />
         </InnerSection>
         <InnerSection>
           <FormInput
-          value=""
+          value={this.props.password}
           placeholder="Password"
           onChangeText={text => this.props.authInputChange({'field': 'password', 'value': text}) }
           secureTextEntry={true} />
         </InnerSection>
         <InnerSection>
-          <Button title="Login" />
+          <Button title="Login" onPress={this.login.bind(this)} />
         </InnerSection>
       </View>
     );
   }
 }
 
-export default connect(null, { authInputChange })(Login);
+const mapStateToProps = state => {
+  return {
+    email: state.auth.email,
+    password: state.auth.password
+  }
+};
+
+export default connect(mapStateToProps, { authInputChange, login })(Login);
