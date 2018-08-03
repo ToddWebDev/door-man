@@ -40,7 +40,10 @@ class Login extends React.Component {
 
   showError() {
     if(this.props.error) {
-      <FormValidationMessage>{this.props.error}</FormValidationMessage>
+      console.log(this.props.error);
+      return (
+        <FormValidationMessage>{this.props.error}</FormValidationMessage>
+      )
     }
   }
   

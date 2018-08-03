@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     
     case 'LOGIN_FAILURE':
       console.log('failure!');
-      return { ...state, error: 'Authentication failed!', loading: false };
+      return { ...state, error: 'Authentication failed!', loading: false }
 
     default: 
       return state;
