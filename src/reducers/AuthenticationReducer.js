@@ -14,10 +14,13 @@ export default (state = initialState, action) => {
     case 'LOGIN_SUCCESS': 
       console.log('success');
       console.log(action.payload);
-      return { ...state, user: action.payload, loading: false }
+      return { ...state, error: '', user: action.payload, loading: false }
 
     case 'LOADING':
-      return{...state, loading: true};
+      return { ...state, loading: true}
+
+    case 'INVALID_LOGIN_FORM':
+      return { ...state, error: 'Email and Password Required!', loading: false }
     
     case 'LOGIN_FAILURE':
       console.log('failure!');

@@ -10,12 +10,17 @@ export const authInputChange = ({ field, value }) => {
 export const login = ({email, password}) => {
   return (dispatch) => {
     dispatch({type: 'LOADING'});
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => {
-        dispatch({type: 'LOGIN_SUCCESS', payload: user});
-      })
-      .catch(function(error){
-        dispatch({type: 'LOGIN_FAILURE'});
-    });
+    if (email.length && password.length >= 4 ) {
+      dispatch({type: 'LOADING'});
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(user => {
+          dispatch({type: 'LOGIN_SUCCESS', payload: user});
+        })
+        .catch(function(error){
+          dispatch({type: 'LOGIN_FAILURE'});
+      });
+    } else {
+      dispatch({type: 'INVALID_LOGIN_FORM'});
+    }
   }
 }
