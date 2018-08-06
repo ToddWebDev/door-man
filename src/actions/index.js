@@ -24,3 +24,20 @@ export const login = ({email, password}) => {
     }
   }
 }
+
+export const noteInputChange = ({ field, value }) => {
+  return {
+    type: 'NOTE_INPUT_CHANGE',
+    payload: { field, value }
+  }
+}
+
+export const createNote = ({ title, body }) => {
+  const { uid } = firebase.auth().currentUser;
+  console.log('Inside the Line: ' + title, body);
+  return (dispatch) => {
+    firebase.database().ref(`/userNotes/${uid}/notes`)
+    .push({ title, body })
+    .then(() => dispatch({type: 'NEW_NOTE'}));
+  }
+}

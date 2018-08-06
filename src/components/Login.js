@@ -2,23 +2,12 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import InnerSection from './InnerSection';
-import firebase from 'firebase';
+import NoteForm from './NoteForm';
 import { authInputChange, login } from '../actions';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
-  componentDidMount(){
-    const config = {
-      apiKey: "AIzaSyDtBC8PhXkiWlrhZKGlXENmREhEjVmdX4I",
-      authDomain: "doorman-auth.firebaseapp.com",
-      databaseURL: "https://doorman-auth.firebaseio.com",
-      projectId: "doorman-auth",
-      storageBucket: "doorman-auth.appspot.com",
-      messagingSenderId: "484408441043"
-    };
-    firebase.initializeApp(config);
-  }
-
+ 
   login() {
     console.log('Entering login function');
     const { email, password } = this.props;
@@ -48,6 +37,11 @@ class Login extends React.Component {
   }
   
   render() {
+    if (this.props.user) {
+      return (
+        <NoteForm />
+      )
+    }
     return (
       <View>
         <InnerSection>
