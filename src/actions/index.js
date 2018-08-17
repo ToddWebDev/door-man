@@ -34,10 +34,21 @@ export const noteInputChange = ({ field, value }) => {
 
 export const createNote = ({ title, body }) => {
   const { uid } = firebase.auth().currentUser;
-  console.log('Inside the Line: ' + title, body);
+
   return (dispatch) => {
     firebase.database().ref(`/userNotes/${uid}/notes`)
     .push({ title, body })
     .then(() => dispatch({type: 'NEW_NOTE'}));
+  }
+}
+
+export const getNotes = () => {
+  const { uid } = firebase.auth().currentUser;
+
+  return (dispatch) => {
+    firebase.database().ref(`/userNotes/${uid}/notes`)
+      .on('value', snapshot => {
+        dispatch({type: 'GET_NOTES', payload: snapshot.val()});
+      });
   }
 }
