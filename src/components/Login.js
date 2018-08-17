@@ -3,6 +3,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import InnerSection from './InnerSection';
 import NoteForm from './NoteForm';
+import NoteList from './NoteList';
 import { authInputChange, login } from '../actions';
 import { connect } from 'react-redux';
 
@@ -39,7 +40,7 @@ class Login extends React.Component {
   render() {
     if (this.props.user) {
       return (
-        <NoteForm />
+        <NoteList />
       )
     }
     return (
