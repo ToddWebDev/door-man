@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './src/components/Login';
-import Header from './src/components/Header';
 import config from './config';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import reducers from './src/reducers';
 import ReduxThunk from 'redux-thunk';
+import AppNavigator from './src/Navigation';
 
 export default class App extends React.Component {
   componentDidMount(){
@@ -18,10 +18,7 @@ export default class App extends React.Component {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <View>
-          <Header title="Login" />
-          <Login />
-        </View>
+        <AppNavigator />
       </Provider>
     );
   }
