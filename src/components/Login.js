@@ -4,9 +4,15 @@ import { Button, FormInput, FormValidationMessage } from 'react-native-elements'
 import InnerSection from './InnerSection';
 import { authInputChange, login } from '../actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Login extends React.Component {
- 
+ componentWillReceiveProps(nextProps){
+  if(!_.isEmpty(nextProps.user)){
+    this.props.navigation.navigate('App');
+  }
+ }
+
   login() {
     console.log('Entering login function');
     const { email, password } = this.props;
