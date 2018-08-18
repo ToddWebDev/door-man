@@ -12,6 +12,7 @@ class AddNote extends React.Component {
     console.log('Entering create note function');
     const { title, body } = this.props;
     this.props.createNote({title, body});
+    this.props.navigation.navigate('Notes');
   }
 
   render() {

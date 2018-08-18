@@ -20,11 +20,13 @@ class EditNote extends React.Component {
     const { id } = this.props.navigation.state.params.note;
     const { title, body } = this.props;
     this.props.editNote({title, body, id});
+    this.props.navigation.navigate('Notes');
   }
 
   delete() {
     const { id } = this.props.navigation.state.params.note;
     this.props.deleteNote({id});
+    this.props.navigation.navigate('Notes');
   }
 
   render() {
