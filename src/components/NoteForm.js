@@ -6,12 +6,6 @@ import { noteInputChange, createNote } from '../actions';
 import { connect } from 'react-redux';
 
 class NoteForm extends React.Component {
- 
-  create() {
-    console.log('Entering create note function');
-    const { title, body } = this.props;
-    this.props.createNote({title, body});
-  }
 
   render() {
     return (
@@ -29,9 +23,6 @@ class NoteForm extends React.Component {
           onChangeText={text => this.props.noteInputChange({'field': 'body', 'value': text}) }
           multiline={true} 
           inputStyle={{height:200}}/>
-        </InnerSection>
-        <InnerSection>
-          <Button title="Add Note" onPress={this.create.bind(this)} backgroundColor={'#3bd3b4'} />
         </InnerSection>
       </View>
     );

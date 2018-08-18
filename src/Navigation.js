@@ -2,7 +2,8 @@ import React from 'react';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from './components/Login';
 import NoteList from './components/NoteList';
-import NoteForm from './components/NoteForm';
+import AddNote from './components/AddNote';
+import EditNote from './components/EditNote';
 import { Icon } from 'react-native-elements';
 
 const AuthStack = createStackNavigator({
@@ -34,11 +35,17 @@ const AppStack = createStackNavigator({
     }
   },
   AddNotes: {
-    screen: NoteForm,
+    screen: AddNote,
     navigationOptions: {
       headerTitle: 'New Note'
     }
-  }
+  },
+  EditNote: {
+    screen: EditNote,
+    navigationOptions: {
+      headerTitle: 'Edit Note'
+    }
+  },
 });
 
 export default createSwitchNavigator(

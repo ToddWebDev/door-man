@@ -22,6 +22,7 @@ class NoteList extends Component {
         <ListItem
           key={note.id}
           title={note.title}
+          onPress={() => this.props.navigation.navigate('EditNote', { note })}
         />
       );
     });
