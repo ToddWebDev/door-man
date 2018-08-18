@@ -11,6 +11,12 @@ export default (state = initialState, action) => {
     case 'NEW_NOTE':
       return initialState;
 
+    case 'NOTE_UPDATED':
+      return initialState;
+
+    case 'NOTE_DELETED':
+      return initialState;
+
     default: 
       return state;
   }

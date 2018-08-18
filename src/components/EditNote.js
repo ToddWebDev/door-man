@@ -3,26 +3,39 @@ import { View } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import NoteForm from './NoteForm';
 import InnerSection from './InnerSection';
-import { noteInputChange, createNote } from '../actions';
+import { noteInputChange, editNote, deleteNote } from '../actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class EditNote extends React.Component {
+
+  componentDidMount() {
+    const { params } = this.props.navigation.state;
+    _.each(params.note, (value, field) => {
+      this.props.noteInputChange({field, value});
+    });
+  }
  
-  create() {
-    console.log('Entering create note function');
+  edit() {
+    const { id } = this.props.navigation.state.params.note;
     const { title, body } = this.props;
-    this.props.createNote({title, body});
+    this.props.editNote({title, body, id});
+  }
+
+  delete() {
+    const { id } = this.props.navigation.state.params.note;
+    this.props.deleteNote({id});
   }
 
   render() {
     return (
       <View>
-        <NoteForm />
+        <NoteForm {...this.props}/>
         <InnerSection>
-          <Button title="Save Note" onPress={this.create.bind(this)} backgroundColor={'#3bd3b4'} />
+          <Button title="Save Note" onPress={this.edit.bind(this)} backgroundColor={'#3bd3b4'} />
         </InnerSection>
         <InnerSection>
-          <Button title="Delete" onPress={this.create.bind(this)} backgroundColor={'#ef2b35'} />
+          <Button title="Delete" onPress={this.delete.bind(this)} backgroundColor={'#ef2b35'} />
         </InnerSection>
       </View>
     );
@@ -36,4 +49,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { noteInputChange, createNote })(EditNote);
+export default connect(mapStateToProps, { noteInputChange, editNote, deleteNote })(EditNote);

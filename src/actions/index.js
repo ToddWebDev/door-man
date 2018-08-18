@@ -42,6 +42,26 @@ export const createNote = ({ title, body }) => {
   }
 }
 
+export const editNote = ({title, body, id}) => {
+  const { uid } = firebase.auth().currentUser;
+
+  return (dispatch) => {
+    firebase.database().ref(`/userNotes/${uid}/notes/${id}`)
+      .set({title, body})
+      .then(() => dispatch({type: 'NOTE_UPDATED'}));
+  }
+}
+
+export const deleteNote = ({id}) => {
+  const { uid } = firebase.auth().currentUser;
+
+  return (dispatch) => {
+    firebase.database().ref(`/userNotes/${uid}/notes/${id}`)
+      .remove()
+      .then(() => dispatch({type: 'NOTE_DELETED'}));
+  }
+}
+
 export const getNotes = () => {
   const { uid } = firebase.auth().currentUser;
 
