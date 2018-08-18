@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import { List, ListItem } from 'react-native-elements';
-import { Text, View } from 'react-native'
+import { View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 import _ from 'lodash';
+
+const styles = {
+  container: {
+    marginTop: 100
+  }
+}
 
 class NoteList extends Component {
   componentDidMount() {
@@ -11,7 +17,6 @@ class NoteList extends Component {
   }
 
   renderList() {
-    console.log(this.props);
     return this.props.notes.map((note) => {
       return (
         <ListItem
@@ -23,8 +28,15 @@ class NoteList extends Component {
   }
 
   render() {
+    if(!this.props.notes.length) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size={'large'} />
+        </View>
+      );
+    }
     return (
-      <List>
+      <List containerStyle={{marginTop: 0}}>
         {this.renderList()}
       </List>
     );
