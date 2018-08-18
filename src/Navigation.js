@@ -4,7 +4,8 @@ import Login from './components/Login';
 import NoteList from './components/NoteList';
 import AddNote from './components/AddNote';
 import EditNote from './components/EditNote';
-import { Icon } from 'react-native-elements';
+import Logout from './components/Logout';
+import { Icon, Button } from 'react-native-elements';
 
 const AuthStack = createStackNavigator({
   Login: {
@@ -30,7 +31,14 @@ const AppStack = createStackNavigator({
             iconStyle={{paddingRight: 10}}
           />
         ),
-        headerLeft: null
+        headerLeft: (
+          <Button
+            onPress={() => navigation.navigate('Logout')}
+            title="Logout"
+            backgroundColor="transparent"
+            color="#555"
+          />
+        )
       };
     }
   },
@@ -45,6 +53,9 @@ const AppStack = createStackNavigator({
     navigationOptions: {
       headerTitle: 'Edit Note'
     }
+  },
+  Logout: {
+    screen: Logout
   },
 });
 
