@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class Login extends React.Component {
- componentWillReceiveProps(nextProps){
-  if(!_.isEmpty(nextProps.user)){
-    this.props.navigation.navigate('App');
+
+  componentWillReceiveProps(nextProps){
+    if(!_.isEmpty(nextProps.user)){
+      this.props.navigation.navigate('App');
+    }
   }
- }
 
   login() {
     console.log('Entering login function');
@@ -68,8 +69,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.email,
-    password: state.auth.password,
+    email: state.auth.email || '',
+    password: state.auth.password || '',
     user: state.auth.user,
     loading: state.auth.loading,
     error: state.auth.error

@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
     case 'LOGOUT_SUCCESS': 
       console.log('logout success');
       console.log(action.payload);
-      return { ...state, error: '', user: null, loading: false }
+      return { initialState, error: '', user: null, loading: false }
 
     case 'LOADING':
       return { ...state, loading: true}
