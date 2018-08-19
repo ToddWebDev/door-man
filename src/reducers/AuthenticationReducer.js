@@ -12,9 +12,14 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.field]: action.payload.value };
 
     case 'LOGIN_SUCCESS': 
-      console.log('success');
+      console.log('login success');
       console.log(action.payload);
       return { ...state, error: '', user: action.payload, loading: false }
+
+    case 'LOGOUT_SUCCESS': 
+      console.log('logout success');
+      console.log(action.payload);
+      return { ...state, error: '', user: null, loading: false }
 
     case 'LOADING':
       return { ...state, loading: true}
@@ -23,8 +28,12 @@ export default (state = initialState, action) => {
       return { ...state, error: 'Email and Password Required!', loading: false }
     
     case 'LOGIN_FAILURE':
-      console.log('failure!');
+      console.log('login failure!');
       return { ...state, error: 'Authentication failed!', loading: false }
+
+    case 'LOGOUT_FAILURE':
+      console.log('logout failure!');
+      return { ...state, error: 'Logout failed!', loading: false }
 
     default: 
       return state;

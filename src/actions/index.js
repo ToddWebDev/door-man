@@ -25,6 +25,18 @@ export const login = ({email, password}) => {
   }
 }
 
+export const logout = () => {
+  const { uid } = firebase.auth().currentUser;
+
+  return (dispatch) => {
+    firebase.auth().signOut().then(function() {
+      dispatch({type: 'LOGOUT_SUCCESS'});
+    }).catch(function(error) {
+      dispatch({type: 'LOGOUT_FAILURE'});
+    });
+  }
+}
+
 export const noteInputChange = ({ field, value }) => {
   return {
     type: 'NOTE_INPUT_CHANGE',

@@ -16,6 +16,18 @@ const AuthStack = createStackNavigator({
   }
 });
 
+const ModalStack = createStackNavigator(
+  {
+    Modal: {
+      screen: Logout
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+
 const AppStack = createStackNavigator({
   Notes: {
     screen: NoteList,
@@ -33,7 +45,7 @@ const AppStack = createStackNavigator({
         ),
         headerLeft: (
           <Button
-            onPress={() => navigation.navigate('Logout')}
+            onPress={() => navigation.navigate('Modal')}
             title="Logout"
             backgroundColor="transparent"
             color="#555"
@@ -53,15 +65,13 @@ const AppStack = createStackNavigator({
     navigationOptions: {
       headerTitle: 'Edit Note'
     }
-  },
-  Logout: {
-    screen: Logout
-  },
+  }
 });
 
 export default createSwitchNavigator(
   {
     App: AppStack,
+    Modal: ModalStack,
     Auth: AuthStack
   },
   {
