@@ -29,6 +29,9 @@ const AuthStack = createStackNavigator({
   },
   Create: {
     screen: CreateAccount,
+    navigationOptions: {
+      headerTitle: 'Sign Up'
+    }
   }
 });
 
@@ -65,6 +68,7 @@ const AppStack = createStackNavigator({
             title="Logout"
             backgroundColor="transparent"
             color="#555"
+            buttonStyle={{marginLeft: -15}}
           />
         )
       };
