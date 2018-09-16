@@ -37,6 +37,24 @@ export const logout = () => {
   }
 }
 
+export const createAccount = ({email, password}) => {
+  return (dispatch) => {
+    dispatch({type: 'LOADING'});
+    if (email.length && password.length >= 4 ) {
+      dispatch({type: 'LOADING'});
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(user => {
+          dispatch({type: 'CREATE_ACCOUNT_SUCCESS', payload: user});
+        })
+        .catch(function(error){
+          dispatch({type: 'CREATE_ACCOUNT_FAILURE'});
+      });
+    } else {
+      dispatch({type: 'INVALID_CREATE_ACCOUNT_FORM'});
+    }
+  }
+}
+
 export const noteInputChange = ({ field, value }) => {
   return {
     type: 'NOTE_INPUT_CHANGE',

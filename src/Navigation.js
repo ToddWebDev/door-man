@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Login from './components/Login';
+import CreateAccount from './components/CreateAccount';
 import NoteList from './components/NoteList';
 import AddNote from './components/AddNote';
 import EditNote from './components/EditNote';
@@ -11,7 +12,14 @@ const AuthStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: {
-      headerTitle: 'Doorman'
+      headerTitle: 'Doorman',
+      headerBackTitle: null
+    }
+  },
+  Create: {
+    screen: CreateAccount,
+    navigationOptions: {
+      headerTitle: 'Doorman',
     }
   }
 });

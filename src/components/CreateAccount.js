@@ -2,22 +2,16 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import InnerSection from './InnerSection';
-import { authInputChange, login } from '../actions';
+import { authInputChange, createAccount } from '../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-class Login extends React.Component {
+class CreateAccount extends React.Component {
 
-  componentWillReceiveProps(nextProps){
-    if(!_.isEmpty(nextProps.user)){
-      this.props.navigation.navigate('App');
-    }
-  }
-
-  login() {
-    console.log('Entering login function');
+  create() {
+    console.log('Entering create account function');
     const { email, password } = this.props;
-    this.props.login({email, password});
+    this.props.createAccount({email, password});
   }
 
   showButton() {
@@ -29,7 +23,7 @@ class Login extends React.Component {
       );
     }
     return (
-      <Button title="Login" onPress={this.login.bind(this)} backgroundColor={'#3bd3b4'} />
+      <Button title="Create Account" onPress={this.create.bind(this)} backgroundColor={'#3bd3b4'} />
     )
   }
 
@@ -62,9 +56,6 @@ class Login extends React.Component {
         <InnerSection>
           {this.showButton()}
         </InnerSection>
-        <InnerSection>
-          <Button title="Create Account" backgroundColor={'#3bd3b4'} />
-        </InnerSection>
       </View>
     );
   }
@@ -80,4 +71,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { authInputChange, login })(Login);
+export default connect(mapStateToProps, { authInputChange, createAccount })(CreateAccount);
