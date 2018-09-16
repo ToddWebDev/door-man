@@ -32,6 +32,12 @@ const AuthStack = createStackNavigator({
     navigationOptions: {
       headerTitle: 'Sign Up'
     }
+  },
+  Reset: {
+    screen: CreateAccount,
+    navigationOptions: {
+      headerTitle: 'Reset Password'
+    }
   }
 });
 

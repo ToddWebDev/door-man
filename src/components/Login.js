@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import InnerSection from './InnerSection';
 import { authInputChange, login } from '../actions';
@@ -61,6 +61,12 @@ class Login extends React.Component {
         {this.showError()}
         <InnerSection>
           {this.showButton()}
+        </InnerSection>
+        <InnerSection>
+          <Text style={{color: '#777', textAlign: 'center'}}
+                onPress={() => this.props.navigation.navigate('Reset')}>
+            Forgot Password?
+          </Text>
         </InnerSection>
       </View>
     );
