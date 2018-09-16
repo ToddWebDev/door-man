@@ -21,6 +21,11 @@ export default (state = initialState, action) => {
       console.log(action.payload);
       return { initialState, error: '', user: null, loading: false }
 
+    case 'LOGIN_SUCCESS': 
+      console.log('create account success');
+      console.log(action.payload);
+      return { ...state, error: '', user: action.payload, loading: false }
+
     case 'LOADING':
       return { ...state, loading: true}
 
