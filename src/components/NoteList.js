@@ -29,7 +29,7 @@ class NoteList extends Component {
   }
 
   render() {
-    if(!this.props.notes.length) {
+    if(this.props.loading) {
       return (
         <View style={styles.container}>
           <ActivityIndicator size={'large'} />
@@ -50,7 +50,10 @@ function mapStateToProps(state) {
     return val;
   });
 
-  return { notes };
+  return { 
+    notes,
+    loading: state.auth.loading
+  };
 }
 
 export default connect(mapStateToProps, { getNotes })(NoteList);
