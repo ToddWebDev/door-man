@@ -33,6 +33,10 @@ export default (state = initialState, action) => {
       console.log('create account failure!');
       return { ...state, error: 'Sign up failed!', loading: false }
 
+    case 'RESET_SUCCESS':
+      console.log('reset success');
+      return { initialState, error: '', user: null, loading: false }
+
     case 'LOADING':
       return { ...state, loading: true}
 

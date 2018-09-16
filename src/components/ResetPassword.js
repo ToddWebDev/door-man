@@ -2,15 +2,17 @@ import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput, FormValidationMessage } from 'react-native-elements';
 import InnerSection from './InnerSection';
-import { authInputChange, createAccount } from '../actions';
+import { authInputChange, resetPassword } from '../actions';
 import { connect } from 'react-redux';
 
-class CreateAccount extends React.Component {
+class ResetPassword extends React.Component {
 
-  create() {
-    console.log('Entering create account function');
-    const { email, password } = this.props;
-    this.props.createAccount({email, password});
+  reset() {
+    console.log('Entering reset password function');
+    const { email } = this.props;
+    console.log(this.props);
+    console.log(email);
+    this.props.resetPassword({email});
   }
 
   showButton() {
@@ -22,7 +24,7 @@ class CreateAccount extends React.Component {
       );
     }
     return (
-      <Button title="Create Account" onPress={this.create.bind(this)} backgroundColor={'#3bd3b4'} />
+      <Button title="Send Link" onPress={this.reset.bind(this)} backgroundColor={'#3bd3b4'} />
     )
   }
 
@@ -44,13 +46,6 @@ class CreateAccount extends React.Component {
           placeholder="Email"
           onChangeText={text => this.props.authInputChange({'field': 'email', 'value': text}) } />
         </InnerSection>
-        <InnerSection>
-          <FormInput
-          value={this.props.password}
-          placeholder="Password"
-          onChangeText={text => this.props.authInputChange({'field': 'password', 'value': text}) }
-          secureTextEntry={true} />
-        </InnerSection>
         {this.showError()}
         <InnerSection>
           {this.showButton()}
@@ -63,11 +58,9 @@ class CreateAccount extends React.Component {
 const mapStateToProps = state => {
   return {
     email: state.auth.email || '',
-    password: state.auth.password || '',
-    user: state.auth.user,
     loading: state.auth.loading,
     error: state.auth.error
   }
 };
 
-export default connect(mapStateToProps, { authInputChange, createAccount })(CreateAccount);
+export default connect(mapStateToProps, { authInputChange, resetPassword })(ResetPassword);

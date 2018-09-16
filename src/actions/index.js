@@ -55,6 +55,17 @@ export const createAccount = ({email, password}) => {
   }
 }
 
+export const resetPassword = ({email}) => {
+  return (dispatch) => {
+    firebase.auth().sendPasswordResetEmail(email).then(function() {
+      // Email sent.
+      dispatch({type: 'RESET_SUCCESS'});
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
+}
+
 export const noteInputChange = ({ field, value }) => {
   return {
     type: 'NOTE_INPUT_CHANGE',

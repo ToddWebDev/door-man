@@ -7,6 +7,7 @@ import AddNote from './components/AddNote';
 import EditNote from './components/EditNote';
 import Logout from './components/Logout';
 import { Icon, Button } from 'react-native-elements';
+import ResetPassword from './components/ResetPassword';
 
 const AuthStack = createStackNavigator({
   Login: {
@@ -34,7 +35,7 @@ const AuthStack = createStackNavigator({
     }
   },
   Reset: {
-    screen: CreateAccount,
+    screen: ResetPassword,
     navigationOptions: {
       headerTitle: 'Reset Password'
     }
