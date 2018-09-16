@@ -11,16 +11,24 @@ import { Icon, Button } from 'react-native-elements';
 const AuthStack = createStackNavigator({
   Login: {
     screen: Login,
-    navigationOptions: {
-      headerTitle: 'Doorman',
-      headerBackTitle: null
+    navigationOptions:({navigation}) => {
+      return {
+        headerTitle: 'Doorman',
+        headerBackTitle: null,
+        headerRight: (
+          <Button 
+            title="Sign Up"
+            onPress={() => navigation.navigate('Create')}
+            backgroundColor="transparent"
+            color="#555"
+            buttonStyle={{marginRight: -15}}
+          />
+        )
+      };
     }
   },
   Create: {
     screen: CreateAccount,
-    navigationOptions: {
-      headerTitle: 'Doorman',
-    }
   }
 });
 

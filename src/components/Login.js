@@ -62,9 +62,6 @@ class Login extends React.Component {
         <InnerSection>
           {this.showButton()}
         </InnerSection>
-        <InnerSection>
-          <Button title="Create Account" backgroundColor={'#3bd3b4'} />
-        </InnerSection>
       </View>
     );
   }
