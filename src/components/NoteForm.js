@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button, FormInput } from 'react-native-elements';
+import { FormInput } from 'react-native-elements';
 import InnerSection from './InnerSection';
 import { noteInputChange, createNote } from '../actions';
 import { connect } from 'react-redux';
@@ -29,11 +29,4 @@ class NoteForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    title: state.note.title,
-    body: state.note.body
-  }
-};
-
-export default connect(mapStateToProps, { noteInputChange, createNote })(NoteForm);
+export default connect(null, { noteInputChange, createNote })(NoteForm);

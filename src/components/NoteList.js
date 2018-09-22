@@ -4,7 +4,6 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 import _ from 'lodash';
-import InnerSection from './InnerSection';
 
 const styles = {
   container: {

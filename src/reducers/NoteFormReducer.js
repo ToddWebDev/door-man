@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case 'NOTE_INPUT_CHANGE':
       return { ...state, [action.payload.field]: action.payload.value };
 
-    case 'NEW_NOTE':
+    case 'CREATE_NOTE':
       return initialState;
 
     case 'NOTE_UPDATED':
