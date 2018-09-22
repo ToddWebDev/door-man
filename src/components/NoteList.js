@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { List, ListItem } from 'react-native-elements';
-import { View, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 import _ from 'lodash';
+import InnerSection from './InnerSection';
 
 const styles = {
   container: {
@@ -36,11 +37,19 @@ class NoteList extends Component {
         </View>
       );
     }
-    return (
-      <List containerStyle={{marginTop: 0}}>
-        {this.renderList()}
-      </List>
-    );
+    if(!this.props.loading && this.props.notes.length) {
+      return (
+        <List containerStyle={{marginTop: 0}}>
+          {this.renderList()}
+        </List>
+      );
+    } else {
+      return (
+        <View style={{margin: 40}}>
+          <Text style={{textAlign: 'center', color: '#999'}}>Get started with the plus button.</Text>
+        </View>
+      );
+    }
   }
 }
 
