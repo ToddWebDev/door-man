@@ -8,15 +8,6 @@ import { connect } from 'react-redux';
 
 class AddNote extends React.Component {
 
-  componentDidMount() {
-    this.setState({
-      note: {
-        title: '',
-        body: ''
-      }
-    })
-  }
- 
   create() {
     console.log('Entering create note function');
     const { title, body } = this.props;
