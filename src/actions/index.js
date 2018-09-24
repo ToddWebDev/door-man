@@ -74,12 +74,16 @@ export const noteInputChange = ({ field, value }) => {
 }
 
 export const createNote = ({ title, body }) => {
-  const { uid } = firebase.auth().currentUser;
-
+  const { uid } = firebase.auth().currentUser; 
   return (dispatch) => {
-    firebase.database().ref(`/userNotes/${uid}/notes`)
-    .push({ title, body })
-    .then(() => dispatch({type: 'NEW_NOTE'}));
+    console.log(title);
+    if (title.length) {
+      firebase.database().ref(`/userNotes/${uid}/notes`)
+      .push({ title, body })
+      .then(() => dispatch({type: 'NEW_NOTE'}));
+    } else {
+      dispatch({type: 'INVALID_NOTE_FORM'});
+    }
   }
 }
 

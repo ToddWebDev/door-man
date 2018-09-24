@@ -1,6 +1,7 @@
 const initialState = {
   title: '',
-  body: ''
+  body: '',
+  error: ''
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +17,9 @@ export default (state = initialState, action) => {
 
     case 'NOTE_DELETED':
       return initialState;
+
+    case 'INVALID_NOTE_FORM':
+      return { ...state, error: 'Title Required!' }
 
     default: 
       return state;

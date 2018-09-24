@@ -29,14 +29,7 @@ class NoteList extends Component {
   }
 
   render() {
-    if(this.props.loading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      );
-    }
-    if(!this.props.loading && this.props.notes.length) {
+    if(this.props.notes.length) {
       return (
         <List containerStyle={{marginTop: 0}}>
           {this.renderList()}

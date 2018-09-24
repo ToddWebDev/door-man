@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button, FormInput } from 'react-native-elements';
+import { Button, FormValidationMessage } from 'react-native-elements';
 import NoteForm from './NoteForm';
 import InnerSection from './InnerSection';
 import { noteInputChange, createNote } from '../actions';
@@ -15,10 +15,20 @@ class AddNote extends React.Component {
     this.props.navigation.navigate('Notes');
   }
 
+  showError() {
+    if(this.props.error) {
+      console.log(this.props.error);
+      return (
+        <FormValidationMessage>{this.props.error}</FormValidationMessage>
+      )
+    }
+  }
+
   render() {
     return (
       <View>
         <NoteForm />
+        {this.showError()}
         <InnerSection>
           <Button title="Add Note" onPress={this.create.bind(this)} backgroundColor={'#3bd3b4'} />
         </InnerSection>
@@ -30,7 +40,8 @@ class AddNote extends React.Component {
 const mapStateToProps = state => {
   return {
     title: state.note.title,
-    body: state.note.body
+    body: state.note.body,
+    error: state.note.error
   }
 };
 
